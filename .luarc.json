@@ -1,0 +1,8 @@
+{
+    "diagnostics.globals": [
+        "auto_install"
+    ],
+    "diagnostics.disable": [
+        "undefined-field"
+    ]
+}
