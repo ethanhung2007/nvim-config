@@ -1,23 +1,23 @@
 return {
-  "echasnovski/mini.surround",
-  version = "*",
-  opts = {
-    mappings = {
-      add = "sa",
-      delete = "sd",
-      find = "sf",
-      find_left = "sF",
-      highlight = "sh",
-      replace = "sr",
-      update_n_lines = "sn",
-    },
-    custom_surroundings = {
-      ["("] = { output = { left = "(", right = ")" } },
-      [")"] = { output = { left = "(", right = ")" } },
-      ["["] = { output = { left = "[", right = "]" } },
-      ["]"] = { output = { left = "[", right = "]" } },
-      ["{"] = { output = { left = "{", right = "}" } },
-      ["}"] = { output = { left = "{", right = "}" } },
-    },
-  },
+	"echasnovski/mini.surround",
+	version = "*",
+	opts = {
+		mappings = {
+			add = "Za",
+			delete = "Zd",
+			find = "Zf",
+			find_left = "ZF",
+			highlight = "Zh",
+			replace = "Zr",
+			update_n_lines = "Zn",
+		},
+		custom_surroundings = {
+			["("] = { output = { left = "(", right = ")" } },
+			[")"] = { output = { left = "(", right = ")" } },
+			["["] = { output = { left = "[", right = "]" } },
+			["]"] = { output = { left = "[", right = "]" } },
+			["{"] = { output = { left = "{", right = "}" } },
+			["}"] = { output = { left = "{", right = "}" } },
+		},
+	},
 }
