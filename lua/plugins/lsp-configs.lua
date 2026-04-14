@@ -62,7 +62,7 @@ return {
 				},
 				root_dir = function(bufnr)
 					local fname = vim.api.nvim_buf_get_name(bufnr)
-					return vim.fs.dirname(vim.fs.find({ ".git", "*.sv", "*.v" }, { path = fname, upward = true })[1])
+					return vim.fs.dirname(vim.fs.find({ ".git" }, { path = fname, upward = true })[1])
 						or vim.fn.getcwd()
 				end,
 			})
@@ -70,7 +70,7 @@ return {
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 			vim.keymap.set({ "n" }, "<leader>ca", vim.lsp.buf.code_action, {})
-      vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
+			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
 		end,
 	},
 }

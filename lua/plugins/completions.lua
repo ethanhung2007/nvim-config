@@ -3,6 +3,9 @@ return {
     "hrsh7th/cmp-nvim-lsp"
   },
   {
+    "hrsh7th/cmp-buffer"
+  },
+  {
     "L3MON4D3/LuaSnip",
     dependencies = {
       "saadparwaiz1/cmp_luasnip",
@@ -56,11 +59,11 @@ return {
               local kind = require("cmp.types").lsp.CompletionItemKind
               local allowed = {
                 [kind.Function] = true,
-                [kind.Method] = true,
+                [kind.Method]   = true,
                 [kind.Variable] = true,
-                [kind.Field] = true,
-                [kind.Class] = true,
-                [kind.Module] = true,
+                [kind.Field]    = true,
+                [kind.Class]    = true,
+                [kind.Module]   = true,
               }
               return allowed[entry:get_kind()] or false
             end,
@@ -69,6 +72,28 @@ return {
         completion = {
           keyword_length = 2,
         },
+      })
+
+      -- SV/Verilog: add buffer words so logic signal names always show up
+      cmp.setup.filetype({ "systemverilog", "verilog" }, {
+        sources = cmp.config.sources({
+          { name = "buffer" },
+          {
+            name = "nvim_lsp",
+            entry_filter = function(entry)
+              local kind = require("cmp.types").lsp.CompletionItemKind
+              local allowed = {
+                [kind.Function] = true,
+                [kind.Method]   = true,
+                [kind.Variable] = true,
+                [kind.Field]    = true,
+                [kind.Class]    = true,
+                [kind.Module]   = true,
+              }
+              return allowed[entry:get_kind()] or false
+            end,
+          },
+        }),
       })
     end,
   },
