@@ -9,7 +9,7 @@ return {
 			filetypes = { "systemverilog", "verilog" },
 			generator = null_ls.generator({
 				command = "verible-verilog-lint",
-				args = { "$FILENAME" },
+        args = { "--rules=-line-length", "$FILENAME" },
 				to_temp_file = true,
 				from_stderr = false,
 				format = "line",
