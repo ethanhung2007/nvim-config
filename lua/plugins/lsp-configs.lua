@@ -67,6 +67,26 @@ return {
 				end,
 			})
 
+			vim.lsp.config("tinymist", {
+				settings = {
+					tinymist = {
+						exportPdf = "onType",
+						fontPaths = { "./fonts" },
+					},
+				},
+			})
+			vim.lsp.enable("tinymist")
+
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "typst",
+				callback = function(ev)
+					vim.keymap.set("n", "<leader>tp", function()
+						local pdf = vim.fn.expand("%:p:r") .. ".pdf"
+						vim.fn.jobstart({ "open", "-a", "Skim", pdf })
+					end, { buffer = ev.buf, desc = "Open PDF in Skim" })
+				end,
+			})
+
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 			vim.keymap.set({ "n" }, "<leader>ca", vim.lsp.buf.code_action, {})
