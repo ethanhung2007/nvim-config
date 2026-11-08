@@ -29,6 +29,9 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			vim.lsp.config("jdtls", {
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				-- Keep completion requests in sync with the server's document.
+				flags = { allow_incremental_sync = false },
 				-- Use the Java project when one exists. For a standalone file,
 				-- keep jdtls scoped to that file's directory instead of $HOME.
 				root_dir = function(bufnr, on_dir)

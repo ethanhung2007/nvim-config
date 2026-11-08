@@ -60,6 +60,11 @@ return {
         },
       })
 
+      -- Include Java interfaces, constructors, enums, and other LSP suggestions.
+      cmp.setup.filetype("java", {
+        sources = cmp.config.sources({ { name = "nvim_lsp" } }),
+      })
+
       -- SV/Verilog: add buffer words so logic signal names always show up
       cmp.setup.filetype({ "systemverilog", "verilog" }, {
         sources = cmp.config.sources({
