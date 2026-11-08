@@ -20,7 +20,7 @@ return {
 		},
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "pyright", "clangd", "lua_ls", "verible", "svlangserver" },
+				ensure_installed = { "pyright", "clangd", "lua_ls", "jdtls", "verible", "svlangserver" },
 				automatic_enable = true,
 			})
 		end,
@@ -28,6 +28,32 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
+			vim.lsp.config("jdtls", {
+				-- Use the Java project when one exists. For a standalone file,
+				-- keep jdtls scoped to that file's directory instead of $HOME.
+				root_dir = function(bufnr, on_dir)
+					local fname = vim.api.nvim_buf_get_name(bufnr)
+					local root = vim.fs.root(fname, {
+						"mvnw",
+						"gradlew",
+						"settings.gradle",
+						"settings.gradle.kts",
+						"build.xml",
+						"pom.xml",
+						"build.gradle",
+						"build.gradle.kts",
+						".git",
+					})
+					local home = vim.uv.os_homedir()
+
+					if root == home then
+						root = nil
+					end
+
+					on_dir(root or vim.fs.dirname(fname))
+				end,
+			})
+
 			vim.lsp.config("lua_ls", {
 				settings = {
 					Lua = {
